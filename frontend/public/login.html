@@ -19,7 +19,7 @@
       href="./favicon-16x16.png"
     />
     <link rel="stylesheet" href="login.css" />
-    <script type="module" src="../../backend/Login.mjs"></script>
+    <script type="text/javascript" src="../../backend/dist/libpack.js"></script>
   </head>
 
   <body>
@@ -27,7 +27,7 @@
       <h1 class="loginheader">Login to your account</h1>
       <input type="username" placeholder="Email..." id="email" />
       <input type="password" placeholder="Password..." id="password" />
-      <button onclick="Login()">Login</button>
+      <button onclick="$.LoginSystem().Login()">Login</button>
     </div>
   </body>
 </html>
