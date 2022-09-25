@@ -1,5 +1,4 @@
-
-import firebase from './node_modules/compat/app';
+import { initializeApp } from 'firebase/app';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,6 +11,6 @@ const firebaseConfig = {
   };
 
   // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
 
   export default app;
