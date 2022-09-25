@@ -5,7 +5,7 @@ module.exports = {
     entry: ['./src/login.js'],
     output: {
         path: path.resolve(__dirname, "dist"),
-        library: '$',
+        library: 'libpack',
         libraryTarget: 'umd',
         filename: 'libpack.js',
     },
