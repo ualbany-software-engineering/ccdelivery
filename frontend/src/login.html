@@ -2,14 +2,14 @@
 <head>
   <title>Login</title>
   <link rel="stylesheet" href="login.css">
+  <script src="../../backend/index.js"></script>
 </head>
 
 <body>
-    <div class=main>
+    <div class=main scr>
         <h1 class="loginheader">Login to your account</h1>
-        <input type="username" placeholder="Username or email..." />
-        <input type="password" placeholder="Password..." />
-        <button>Login</button>
+        <input type="username" placeholder="Email..." id="email"/>
+        <input type="password" placeholder="Password..." id="password"/>
+        <button onclick="login()">Login</button>
     </div>
 </body>
-</html>

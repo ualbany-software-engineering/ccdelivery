@@ -1,36 +1,8 @@
 // Credit https://firebase.google.com/docs/auth/web/facebook-login#web-version-9
-import { getAuth, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, FacebookAuthProvider } from "./node_modules/firebase/auth";
 import app from "./firebase.mjs";
-import React, {useState, useEffect} from "react";
-import { FirebaseError } from "firebase/app";
-
-
-// export function login () {
-// 	const auth = getAuth();
-// 	signInWithPopup(auth, provider)
-//   		.then((result) => {
-//     	// The signed-in user info.
-//     	const user = result.user;
-
-//     	// This gives you a Facebook Access Token. You can use it to access the Facebook API.
-//     	const credential = FacebookAuthProvider.credentialFromResult(result);
-//     	const accessToken = credential.accessToken;
-
-//     // ...
-//   	})
-//   	.catch((error) => {
-//     // Handle Errors here.
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // The email of the user's account used.
-//     const email = error.customData.email;
-//     // The AuthCredential type that was used.
-//     const credential = FacebookAuthProvider.credentialFromError(error);
-
-
-//     // ...
-//   });
-//const userStatus = app.auth(); //To initialize a user, and gets current state of user, whether sign in or out
+import React, {useState, useEffect} from "./node_modules/react";
+import { FirebaseError } from "./node_modules/firebase/app";
 
 export function LoginSystem () {
     const [user, setUser] = useState('');
@@ -40,30 +12,13 @@ export function LoginSystem () {
     const [passwordError, setPasswordError] = useState('');
     const [hasAccount, setHasAccount] = useState(false);
 
+    function Login () {
+    	var email = document.getElementById("email").getAttribute("value");
+		  var password = document.getElementById("password").getAttribute("value"); // Get username and password
 
-    function login () {
-      const auth = getAuth();
-    signInWithPopup(auth, provider)
-        .then((result) => {
-        // The signed-in user info.
-        const user = result.user;
-  
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken;
-  
-      // ...
-      })
-      .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = FacebookAuthProvider.credentialFromError(error);
-      })
-}
+		  window.alert(email + " " + password);
+
+	}
 
     /**
      * Sign Up Features
@@ -110,4 +65,12 @@ export function LoginSystem () {
       AuthListener
      }, []);
 
+  }
+
+  export function Login() {
+    LoginSystem.Login();
+  }
+
+  export default function() {
+    alert("Module loaded (export default)!");
   }

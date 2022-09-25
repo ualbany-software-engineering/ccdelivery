@@ -1,9 +1,5 @@
-const express = require('express');
-const login = import('./login.mjs');
-const app = express();
+ function  login() {
+	let say = import('./login.mjs');
+    say.default(); // Module loaded (export default)!
 
-app.get('/', (req, res) => {
-	res.send('hello!');
-});
-
-app.listen(8080);
+}
