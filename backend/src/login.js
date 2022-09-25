@@ -1,77 +1,62 @@
-// Credit https://firebase.google.com/docs/auth/web/facebook-login#web-version-9
-import React, { useState, useEffect } from "react";
-import { FirebaseError } from "firebase/app";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import { app } from "./firebase.js";
 
-import { initializeApp } from 'firebase/app';
-
-import { app } from "../src/firebase.js";
-
-function LoginSystem() {
-  const [user, setUser] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [hasAccount, setHasAccount] = useState(false);
-
-  function Login() {
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value; // Get username and password
-
-    window.alert(email + " " + password);
+app;
+export class LoginSystem {
+  Login() {
+    const auth = getAuth();
+    signInWithEmailAndPassword(
+      auth,
+      document.getElementById("email").value,
+      document.getElementById("password").value
+    )
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        window.location.replace("../../frontend/public/index.html");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        window.alert(errorCode + ": " + errorMessage);
+      });
   }
-
-  /**
-   * Sign Up Features
-   * Accounts for weak password/username not valid or in use
-   */
-  function SignUpstory() {
-    app
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch((err) => {
-        //in case of an error in username and password
-        switch (err.code) {
-          case "auth/email-already-in-use":
-          case "auth/invalid-email":
-            setEmailError(err.message);
-            break;
-          case "auth/weak-password":
-            setPasswordError(err.message);
-            break;
-        }
+  SignUp() {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(
+      auth,
+      document.getElementById("email").value,
+      document.getElementById("password").value
+    )
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        window.location.replace("../../frontend/public/index.html");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        window.alert(errorCode + ": " + errorMessage);
+        // ..
       });
   }
 
-  /**
-   * Handles Signout for user
-   */
-  function SignOutstory() {
-    app.auth().SignOut(); //Signs out of current account
+  SignOut() {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        document.getElementById("myDIV").style.backgroundColor = "red";
+      })
+      .catch((error) => {
+        // An error happened.
+      });
   }
-
-  /**
-   * Once Logged in through firebase, user has to be set to it still explicitly
-   * So we will implement an authentication listener
-   */
-  function AuthListener() {
-    app.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      } //meaning if user is valid, we setting it as the current user
-      else {
-        setUser("");
-      }
-    });
-  }
-
-  useEffect(() => {
-    AuthListener;
-  }, []);
 }
-
-function Login() {
-  LoginSystem().Login();
-}
-
-export {Login, LoginSystem};
