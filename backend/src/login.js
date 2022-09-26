@@ -6,7 +6,7 @@ import {
   setPersistence,
   onAuthStateChanged,
 } from "firebase/auth";
-import { app } from "./firebase.js";
+
 
 app;
 export class LoginSystem {
@@ -65,10 +65,10 @@ export function check() {
   var password = document.getElementById("password").value;
   var passwordTwo = document.getElementById("passwordTwo").value;
   if (
-    stringLength(email) == 0 ||
-    stringLength(emailTwo) == 0 ||
-    stringLength(password) == 0 ||
-    stringLength(passwordTwo) == 0
+    email.length == 0 ||
+    emailTwo.length == 0 ||
+    password.length == 0 ||
+    passwordTwo.length == 0
   )
     return false;
   if (password === passwordTwo) {
@@ -86,9 +86,17 @@ export function isSignedIn() {
     if (user) {
       document.getElementById("login").innerHTML = "Signout";
       document.getElementById("login").href = "javascript:new libpack.LoginSystem().SignOut();";
+      document.getElementById("lisetting").className  = "list-item";
+      document.getElementById("setting").className = "list-link";
+      document.getElementById("setting").href = "./settings.html"
+      document.getElementById("setting").innerHTML = "Settings";
     } else {
       document.getElementById("login").innerHTML = "Login/Signup";
       document.getElementById("login").href = "../public/login.html";
+      document.getElementById("lisetting").className  = "";
+      document.getElementById("setting").className = "";
+      document.getElementById("setting").href = ""
+      document.getElementById("setting").innerHTML = "";
     }
   });
 }
