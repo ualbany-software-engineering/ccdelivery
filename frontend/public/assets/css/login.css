@@ -9,37 +9,25 @@
 }
 
 :root {
-  --body-font-family: 'Poppins', sans-serif;
+  --body-font-family: "Poppins", sans-serif;
   --body-font-color: #676767;
   --light-color: #fff;
-  --dark-color: #2E2E2E;
-  --dark-color-lighter: #4D4D4D;
-  --accent-color: #EEB211;
-  --section-background-color: #FEF5F5;
+  --dark-color: #2e2e2e;
+  --dark-color-lighter: #4d4d4d;
+  --accent-color: #eeb211;
+  --section-background-color: #fef5f5;
 }
 
 .logo-image {
-  width: 100px;
-  height: auto;
+  min-width: 15.5rem;
+  margin-right: 10rem;
 }
 
 body {
   font-family: "Poppins", sans-serif;
   padding: 0px;
   margin: 0px;
-}
-
-input,
-button {
-  font-family: "Poppins", sans-serif;
-  display: inline-block;
-  text-align: center;
-  background-color: var(--accent-color);
-  color: var(--dark-color);
-  padding: 1.4rem;
-  border: 1px solid transparent;
-  border-radius: 0.8rem;
-  transition: background-color 0.25s;
+  color: var(--body-font-color);
 }
 
 .main {
@@ -54,11 +42,12 @@ button {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   padding: 10px;
+  color: var(--body-font-color);
 }
 
 .main input {
   display: block;
-  border: 1px solid lightgrey;
+  border: 1px solid var(--body-font-color);
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -66,21 +55,20 @@ button {
   -o-border-radius: 5px;
   background: ghostwhite;
   padding: 15px;
-  outline-color: var(--dark-color-lighter);
   margin-bottom: 10px;
   width: 100%;
+  outline-color: var(--accent-color);
 }
 
 .main button {
   display: block;
-  border: 1px solid var(--dark-color-lighter);
+  border: 1px transparent;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   padding: 15px;
-  outline-color: rgb(133, 133, 133);
   display: block;
   width: 100%;
   background-color: var(--accent-color);
@@ -93,13 +81,10 @@ button {
   -o-transition: 0.3s;
 }
 
-.main button:hover,
-.button:focus {
-  background: #f3cf6c;
-}
-
-.switch {
-  padding-top: 5px;
+.main button:hover {
+  background-color: var(--light-color);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
 }
 
 .loginheader {
@@ -110,4 +95,9 @@ button {
 
 .main a {
   color: var(--light-color);
+  text-decoration: none;
+}
+
+.main button:hover a {
+  color: var(--accent-color);
 }
