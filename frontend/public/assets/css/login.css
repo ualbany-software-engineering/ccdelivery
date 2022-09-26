@@ -62,7 +62,7 @@ body {
 
 .main button {
   display: block;
-  border: 1px transparent;
+  border: 1px solid var(--light-color);
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
