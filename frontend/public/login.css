@@ -65,8 +65,64 @@ button {
   background: #a2d9ce;
 }
 
+.switch {
+  padding-top: 5px;
+}
+
+.switch button {
+  display: block;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  background: ghostwhite;
+  padding: 15px;
+  outline-color: rgb(133, 133, 133);
+  display: block;
+  width: 100%;
+  background: lightskyblue;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.switch button:hover {
+  background: rgb(215, 236, 249);
+}
+
 .loginheader {
   font-size: 20px;
   color: #424949;
   text-align: center;
+}
+
+.back {
+  padding-bottom: 7%;
+}
+
+.back button {
+  float: right;
+  display: block;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  background: ghostwhite;
+  padding: 15px;
+  outline-color: rgb(133, 133, 133);
+  display: block;
+  width: 50px;
+  height: 25px;
+  background: lightskyblue;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
 }

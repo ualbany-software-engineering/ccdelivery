@@ -28,7 +28,14 @@
       <h1 class="loginheader">Login to your account</h1>
       <input type="username" placeholder="Email..." id="email" />
       <input type="password" placeholder="Password..." id="password" />
-      <button id="auth" onclick="new libpack.LoginSystem().Login()">Login</button>
+      <button id="auth" onclick="new libpack.LoginSystem().Login()">
+        Login
+      </button>
+      <div class="switch">
+        <button onclick="window.location.replace('./signup.html')">
+          <a href="./signup.html">Signup</a>
+        </button>
+      </div>
       <h1
         id="error"
         style="font-size: 15px; text-align: center; color: #800020"

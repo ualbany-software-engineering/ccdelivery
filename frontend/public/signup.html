@@ -25,6 +25,12 @@
 
   <body>
     <div class="main" scr>
+      <div class="back">
+        <button type="button" class="menu-toggler">
+          <i class="ri-menu-line toggle-icon open-menu-icon"></i>
+          <i class="ri-close-line toggle-icon close-menu-icon"></i>
+        </button>
+      </div>
       <h1 class="loginheader">Signup!</h1>
       <input type="username" placeholder="Email..." id="email" />
       <input type="username" placeholder="Confirm Email..." id="emailTwo" />
@@ -41,6 +47,11 @@
       >
         Signup!
       </button>
+      <div class="switch">
+        <button onclick="window.location.replace('./login.html')">
+          <a href="./login.html">Login</a>
+        </button>
+      </div>
       <h1
         id="error"
         style="font-size: 15px; text-align: center; color: #800020"
