@@ -6,7 +6,7 @@ import {
   setPersistence,
   onAuthStateChanged,
 } from "firebase/auth";
-
+import { app } from "./firebase.js";
 
 app;
 export class LoginSystem {
