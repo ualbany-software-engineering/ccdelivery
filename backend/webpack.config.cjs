@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
     context: __dirname,
-    entry: ['./src/login.js'],
+    entry: './src/login.js',
     output: {
         path: path.resolve(__dirname, "dist"),
         library: 'libpack',

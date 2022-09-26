@@ -1,9 +1,10 @@
-import { stringLength } from "@firebase/util";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
+  browserLocalPersistence,
   signInWithEmailAndPassword,
   signOut,
+  setPersistence,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { app } from "./firebase.js";
 
@@ -11,6 +12,7 @@ app;
 export class LoginSystem {
   Login() {
     const auth = getAuth();
+    setPersistence(auth, browserLocalPersistence);
     signInWithEmailAndPassword(
       auth,
       document.getElementById("email").value,
@@ -48,7 +50,7 @@ export class LoginSystem {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        document.getElementById("myDIV").style.backgroundColor = "red";
+        //document.getElementById("myDIV").style.backgroundColor = "red";
       })
       .catch((error) => {
         // An error happened.
@@ -56,6 +58,8 @@ export class LoginSystem {
   }
 }
 
+
+// Helpers
 export function check() {
   var email = document.getElementById("email").value;
   var emailTwo = document.getElementById("emailTwo").value;
@@ -77,4 +81,15 @@ export function check() {
   } else {
     return false;
   }
+}
+export function isSignedIn() {
+  getAuth().onAuthStateChanged(function(user) {
+    if (user) {
+      document.getElementById("login").innerHTML = "Signout";
+      document.getElementById("login").href = "javascript:new libpack.LoginSystem().SignOut();";
+    } else {
+      document.getElementById("login").innerHTML = "Login/Signup";
+      document.getElementById("login").href = "../public/login.html";
+    }
+  });
 }
