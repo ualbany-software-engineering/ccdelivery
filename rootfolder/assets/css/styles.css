@@ -363,6 +363,7 @@ transition: all .25s;
    max-width: 75%;
    box-shadow: 0 .5rem 2rem rgb(0, 0, 0, .6);
    border-radius: 45%;
+   width: 500px;
    
 }
 /* !WHAT WE SERVE */
