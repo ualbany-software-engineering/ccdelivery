@@ -1,23 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --body-font-family: "Poppins", sans-serif;
+  --body-font-color: #676767;
+  --light-color: #fff;
+  --dark-color: #2e2e2e;
+  --dark-color-lighter: #4d4d4d;
+  --accent-color: #550096;
+  --section-background-color: #fef5f5;
+}
+
+.logo-image{
+  width: 100px;
+  height: auto;
+
+}
+
 body {
-  background-image: linear-gradient(#fdfefe, #e5e7e9, #f0f3f4);
-  background-color: lightgray;
-  font-family: "GFS Didot";
+  font-family: "Poppins", sans-serif;
   padding: 0px;
   margin: 0px;
 }
+
 input,
 button {
-  font-family: "GFS Didot";
+  font-family: "Poppins", sans-serif;
+  display: inline-block;
+  text-align: center;
+  background-color: var(--accent-color);
+  color: var(--dark-color);
+  padding: 1.4rem;
+  border: 1px solid transparent;
+  border-radius: 0.8rem;
+  transition: background-color 0.25s;
 }
 .main {
   width: 20%;
   margin: 0px auto;
-  margin-top: 100px;
-  background-image: linear-gradient(#fdfefe, #ecf0f1);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #fbfcfc;
-  border: 1px solid lightgrey;
+  margin-top: 0;
+  background-color: var(--light-color);
+  border: 1px solid var(--dark-color-lighter);
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -35,25 +65,26 @@ button {
   -o-border-radius: 5px;
   background: ghostwhite;
   padding: 15px;
-  outline-color: rgb(133, 133, 133);
+  outline-color: var(--dark-color-lighter);
   margin-bottom: 10px;
   width: 100%;
 }
 
 .main button {
   display: block;
-  border: 1px solid lightgrey;
+  border: 1px solid var(--dark-color-lighter);
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-  background: ghostwhite;
   padding: 15px;
   outline-color: rgb(133, 133, 133);
   display: block;
   width: 100%;
-  background: #45b39d;
+  background-color: var(--accent-color);
+  color: var(--light-color);
+  margin-bottom: 2px;
   transition: 0.3s;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
@@ -61,68 +92,21 @@ button {
   -o-transition: 0.3s;
 }
 
-.main button:hover {
-  background: #a2d9ce;
+.main button:hover,
+.button:focus {
+  background: #a17abf;
 }
 
 .switch {
   padding-top: 5px;
 }
 
-.switch button {
-  display: block;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  background: ghostwhite;
-  padding: 15px;
-  outline-color: rgb(133, 133, 133);
-  display: block;
-  width: 100%;
-  background: lightskyblue;
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-}
-
-.switch button:hover {
-  background: rgb(215, 236, 249);
-}
-
 .loginheader {
   font-size: 20px;
-  color: #424949;
+  color: var(--body-font-color);
   text-align: center;
 }
 
-.back {
-  padding-bottom: 7%;
-}
-
-.back button {
-  float: right;
-  display: block;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  background: ghostwhite;
-  padding: 15px;
-  outline-color: rgb(133, 133, 133);
-  display: block;
-  width: 50px;
-  height: 25px;
-  background: lightskyblue;
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
+a {
+  color: var(--light-color);
 }
