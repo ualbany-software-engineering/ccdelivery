@@ -5,6 +5,7 @@ import {
   signOut,
   setPersistence,
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { app } from "./firebase.js";
 
