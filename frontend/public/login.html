@@ -28,7 +28,27 @@
       <h1 class="loginheader">Login to your account</h1>
       <input type="username" placeholder="Email..." id="email" />
       <input type="password" placeholder="Password..." id="password" />
-      <button onclick="new libpack.LoginSystem().Login()">Login</button>
+      <button id="auth" onclick="new libpack.LoginSystem().Login()">Login</button>
+      <h1
+        id="error"
+        style="font-size: 15px; text-align: center; color: #800020"
+      ></h1>
+      <script type="text/javascript">
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+
+        email.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            document.getElementById("auth").click();
+          }
+        });
+
+        password.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            document.getElementById("auth").click();
+          }
+        });
+      </script>
     </div>
   </body>
 </html>

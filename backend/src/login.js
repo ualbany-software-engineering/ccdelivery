@@ -23,9 +23,7 @@ export class LoginSystem {
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        window.alert(errorCode + ": " + errorMessage);
+        document.getElementById("error").innerHTML = error.message;
       });
   }
   SignUp() {
@@ -41,7 +39,7 @@ export class LoginSystem {
         window.location.replace("../../frontend/public/index.html");
       })
       .catch((error) => {
-        document.getElementById('error').innerHTML = error.message;
+        document.getElementById("error").innerHTML = error.message;
       });
   }
 
