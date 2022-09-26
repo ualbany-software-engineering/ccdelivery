@@ -1,3 +1,4 @@
+import { stringLength } from "@firebase/util";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -38,13 +39,9 @@ export class LoginSystem {
         // Signed in
         const user = userCredential.user;
         window.location.replace("../../frontend/public/index.html");
-        // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        window.alert(errorCode + ": " + errorMessage);
-        // ..
+        document.getElementById('error').innerHTML = error.message;
       });
   }
 
@@ -58,5 +55,28 @@ export class LoginSystem {
       .catch((error) => {
         // An error happened.
       });
+  }
+}
+
+export function check() {
+  var email = document.getElementById("email").value;
+  var emailTwo = document.getElementById("emailTwo").value;
+  var password = document.getElementById("password").value;
+  var passwordTwo = document.getElementById("passwordTwo").value;
+  if (
+    stringLength(email) == 0 ||
+    stringLength(emailTwo) == 0 ||
+    stringLength(password) == 0 ||
+    stringLength(passwordTwo) == 0
+  )
+    return false;
+  if (password === passwordTwo) {
+    if (email === emailTwo) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
   }
 }

@@ -27,8 +27,54 @@
     <div class="main" scr>
       <h1 class="loginheader">Signup!</h1>
       <input type="username" placeholder="Email..." id="email" />
+      <input type="username" placeholder="Confirm Email..." id="emailTwo" />
       <input type="password" placeholder="Password..." id="password" />
-      <button onclick="new libpack.LoginSystem().SignUp()">Signup!</button>
+      <input
+        type="password"
+        placeholder="Confirm password..."
+        id="passwordTwo"
+      />
+      <button
+        id="auth"
+        onclick="if(libpack.check()) { new libpack.LoginSystem().SignUp(); } 
+        else {document.getElementById('error').innerHTML = 'Error emails or passwords do not match.'; }"
+      >
+        Signup!
+      </button>
+      <h1
+        id="error"
+        style="font-size: 15px; text-align: center; color: #800020"
+      ></h1>
+      <script type="text/javascript">
+        var email = document.getElementById("email");
+        var emailTwo = document.getElementById("emailTwo");
+        var password = document.getElementById("password");
+        var passwordTwo = document.getElementById("paswordTwo");
+
+        email.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            document.getElementById("auth").click();
+          }
+        });
+
+        emailTwo.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            document.getElementById("auth").click();
+          }
+        });
+
+        password.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            document.getElementById("auth").click();
+          }
+        });
+
+        passwordTwo.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            document.getElementById("auth").click();
+          }
+        });
+      </script>
     </div>
   </body>
 </html>
