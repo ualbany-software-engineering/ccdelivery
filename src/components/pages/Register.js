@@ -2,8 +2,8 @@ import "../../App.css";
 import "./../css/Register.css";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useHistory } from "react-router-dom";
-import { auth, registerWithEmailAndPassword } from "./../api/firebase";
+import { Link, useNavigate  } from "react-router-dom";
+import { auth, registerWithEmailAndPassword } from "../../api/firebase";
 
 // https://blog.logrocket.com/user-authentication-firebase-react-apps/
 
@@ -12,7 +12,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [user, loading, error] = useAuthState(auth);
-  const history = useHistory();
+  const history = useNavigate ();
   const register = () => {
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);
@@ -42,7 +42,7 @@ function Register() {
           Register
         </button>
         <div>
-          Already have an account? <Link to="/">Login</Link> now.
+          Already have an account? <Link to="/login">Login</Link> now.
         </div>
       </div>
     </div>

@@ -4,8 +4,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword } from "../../api/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-
-import Button from "../Button";
 // Help from https://blog.logrocket.com/user-authentication-firebase-react-apps/
 function Login() {
   const [email, setEmail] = useState("");
@@ -39,8 +37,7 @@ function Login() {
           placeholder="Password"
         />
         <button
-          className="login__btn"
-          onClick={() => logInWithEmailAndPassword(email, password)}
+          className="login__btn" onClick={() => logInWithEmailAndPassword(email, password)}
         >
           Login
         </button>
