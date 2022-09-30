@@ -1,1 +1,0 @@
-Micheal Smith is my name. Am a student in this class.
