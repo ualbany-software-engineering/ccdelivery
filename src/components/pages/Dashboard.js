@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import "../css/Dashboard.css";
-import { auth, db, logout } from "../../api/firebase";
+import { auth, logout } from "../../api/firebase";
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();

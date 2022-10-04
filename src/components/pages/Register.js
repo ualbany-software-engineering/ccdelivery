@@ -1,24 +1,28 @@
 import "../../App.css";
 import "./../css/Register.css";
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { registerWithEmailAndPassword } from "../../api/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useNavigate  } from "react-router-dom";
-import { auth, registerWithEmailAndPassword } from "../../api/firebase";
+import { auth } from "../../api/firebase";
+
 
 // https://blog.logrocket.com/user-authentication-firebase-react-apps/
 
 function Register() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
-  const history = useNavigate ();
+  const [user] = useAuthState(auth);
+
   const register = () => {
     registerWithEmailAndPassword(email, password);
   };
+
   useEffect(() => {
-    if (loading) return;
-    if (user) history.replace("/dashboard");
-  }, [user, loading]);
+    if (user) navigate("/");
+  }, [user]);
+
   return (
     <div className="register">
       <div className="register__container">
