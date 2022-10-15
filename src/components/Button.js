@@ -2,7 +2,7 @@ import React from "react";
 import "./css/Button.css";
 
 const STYLES = ["btn--primary", "btn--outline"];
-const SIZES = ["btn--medium", "btn--large"];
+const SIZES = ["btn--small", "btn--medium", "btn--large"];
 
 function Button({
   children,
@@ -16,7 +16,7 @@ function Button({
   const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
     : STYLES[0];
-  const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
+  const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[1];
   return (
     <button
       className={"btn " + checkButtonStyle + " " + checkButtonSize}

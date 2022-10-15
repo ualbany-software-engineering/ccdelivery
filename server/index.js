@@ -4,7 +4,7 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = require('./config/mysql');
+const db = require("./config/mysql");
 
 var admin = require("firebase-admin");
 var serviceAccount = require("./firebase.json");
@@ -12,7 +12,6 @@ var serviceAccount = require("./firebase.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
-
 
 app.get("/api/firebase/get", async (req, res) => {
   var allUsers = [];
@@ -31,6 +30,34 @@ app.get("/api/firebase/get", async (req, res) => {
       console.log("Error listing users:", error);
       res.status(500).send(error);
     });
+});
+
+app.get("/api/users/get/:uid", async (req, res) => {
+  const uid = req.params.uid;
+  db.query("SELECT * FROM users WHERE uid = ?", uid, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(result);
+  });
+});
+
+app.get("/api/users/perms/:uid", async (req, res) => {
+  const uid = req.params.uid;
+  db.query("SELECT * FROM users WHERE uid = ?", uid, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    if (result[0].admin === 1) {
+      res.send("3");
+    } else if (result[0].deliverer === 1) {
+      res.send("2");
+    } else if (result[0].banned === 0) {
+      res.send("0");
+    } else {
+      res.send("1");
+    }
+  });
 });
 
 app.post("/api/users/insert", (req, res) => {
