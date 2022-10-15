@@ -7,7 +7,6 @@ import { auth } from "../api/firebase";
 
 function Navbar() {
   const [user] = useAuthState(auth);
-  console.log(user);
   const isSignedin = user ? true : false;
 
   return (

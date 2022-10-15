@@ -9,12 +9,13 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAYKCEONKIMkzTxjnfweV3_AKsKsu55pjQ",
-  authDomain: "ccdelivery-c95e9.firebaseapp.com",
-  projectId: "ccdelivery-c95e9",
-  storageBucket: "ccdelivery-c95e9.appspot.com",
-  messagingSenderId: "612767739408",
-  appId: "1:612767739408:web:a39742140acd3efb212495",
+  apiKey: "AIzaSyA1QXHM_p74lJ5IjPp2xkKia7bM0Ek9ax4",
+  authDomain: "ccdelivery-4752f.firebaseapp.com",
+  projectId: "ccdelivery-4752f",
+  storageBucket: "ccdelivery-4752f.appspot.com",
+  messagingSenderId: "609192068170",
+  appId: "1:609192068170:web:54ea74db2201a33f8dd2b3",
+  measurementId: "G-3YFBKMS28D"
 };
 
 // Initialize Firebase
