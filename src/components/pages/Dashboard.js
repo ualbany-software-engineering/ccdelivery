@@ -36,14 +36,20 @@ function Dashboard() {
             Axios.get(`http://localhost:80/api/firebase/get`).then((data) => {
               setUsers(data.data);
               setVisable(true);
+              data.data.forEach((element) => {
+                Axios.post("http://localhost:80/api/users/insert", {
+                  email: element.email,
+                  uid: element.uid,
+                });
+              });
             });
           }}
         >
-          Get Data
+          Insert All Users
         </Button>
         {visable &&
           users.map((val, key) => {
-            return <div>{key + ": " + val.email + ": " +val.uid}</div>;
+            return <div>{key + ": " + val.email + ": " + val.uid}</div>;
           })}
       </div>
     </div>
