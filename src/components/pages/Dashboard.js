@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import "../css/Dashboard.css";
 import { auth, logout } from "../../api/firebase";
 import Axios from "axios";
 import Button from "../Button";
-
+import PageNotFound from "./PageNotFound";
+import "../css/Dashboard.css";
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
   const [users, setUsers] = useState([]);
   const [perms, setPerms] = useState(1);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
+    if (!user) return;
     Axios.get(`http://localhost:80/api/users/perms/${user.uid}`).then(
       (data) => {
         setPerms(parseInt(data.data));
@@ -23,7 +22,7 @@ function Dashboard() {
     Axios.get(`http://localhost:80/api/firebase/get`).then((data) => {
       setUsers(data.data);
     });
-  });
+  }, [user, loading]);
 
   function post() {
     users.forEach((element) => {
@@ -43,38 +42,41 @@ function Dashboard() {
     }
     return array;
   }
-
-  return (
-    <div className="dashboard">
-      {"Logged in as " + (user ? user.email : "")}
-      <table>
-        <tr style={{ display: "inline-block" }}>
-          <td>
-            <Button
-              buttonSize="btn--small"
-              buttonStyle="btn--outline"
-              onClick={logout}
-            >
-              Logout
-            </Button>
-          </td>
-          {perms === 3 && (
+  if (user) {
+    return (
+      <div className="dashboard">
+        {"Logged in as " + (user ? user.email : "")}
+        <table>
+          <tr style={{ display: "inline-block" }}>
             <td>
               <Button
-                buttonStyle="btn--outline"
                 buttonSize="btn--small"
-                onClick={() => {
-                  post();
-                }}
+                buttonStyle="btn--outline"
+                onClick={logout}
               >
-                Insert All Users
+                Logout
               </Button>
             </td>
-          )}
-        </tr>
-      </table>
-      <RenderUsers />
-    </div>
-  );
+            {perms === 3 && (
+              <td>
+                <Button
+                  buttonStyle="btn--outline"
+                  buttonSize="btn--small"
+                  onClick={() => {
+                    post();
+                  }}
+                >
+                  Insert All Users
+                </Button>
+              </td>
+            )}
+          </tr>
+        </table>
+        <RenderUsers />
+      </div>
+    );
+  } else {
+    return <PageNotFound />;
+  }
 }
 export default Dashboard;
