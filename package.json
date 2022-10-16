@@ -21,6 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
+    "serve": "node server/index.js",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts --openssl-legacy-provider test",
     "eject": "react-scripts eject"

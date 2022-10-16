@@ -8,21 +8,40 @@ import Button from "../Button";
 
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
-  const [users, setUsers] = useState();
-  const [visable, setVisable] = useState(false);
+  const [users, setUsers] = useState([]);
   const [perms, setPerms] = useState(1);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
-  }, [user, loading]);
-
-  const getPerms = () => {
-    if(user) Axios.get(`http://localhost:80/api/users/perms/${user.uid}`).then((data) => {
-      setPerms(parseInt(data.data));
+    Axios.get(`http://localhost:80/api/users/perms/${user.uid}`).then(
+      (data) => {
+        setPerms(parseInt(data.data));
+      }
+    );
+    Axios.get(`http://localhost:80/api/firebase/get`).then((data) => {
+      setUsers(data.data);
     });
-    return perms;
+  });
+
+  function post() {
+    users.forEach((element) => {
+      Axios.post("http://localhost:80/api/users/insert", {
+        email: element.email,
+        uid: element.uid,
+      });
+    });
+  }
+
+  function RenderUsers() {
+    let array = [];
+    if (perms === 3) {
+      users.forEach((item, index) => {
+        array.push(<div>{index + ": " + item.email + ": " + item.uid}</div>);
+      });
+    }
+    return array;
   }
 
   return (
@@ -39,34 +58,22 @@ function Dashboard() {
               Logout
             </Button>
           </td>
-          {getPerms() === 3 && <td>
-            <Button
-              buttonStyle="btn--outline"
-              buttonSize="btn--small"
-              onClick={() => {
-                Axios.get(`http://localhost:80/api/firebase/get`).then(
-                  (data) => {
-                    setUsers(data.data);
-                    setVisable(true);
-                    data.data.forEach((element) => {
-                      Axios.post("http://localhost:80/api/users/insert", {
-                        email: element.email,
-                        uid: element.uid,
-                      });
-                    });
-                  }
-                );
-              }}
-            >
-              Insert All Users
-            </Button>
-          </td>}
+          {perms === 3 && (
+            <td>
+              <Button
+                buttonStyle="btn--outline"
+                buttonSize="btn--small"
+                onClick={() => {
+                  post();
+                }}
+              >
+                Insert All Users
+              </Button>
+            </td>
+          )}
         </tr>
       </table>
-      {visable &&
-        users.map((val, key) => {
-          return <div>{key + ": " + val.email + ": " + val.uid}</div>;
-        })}
+      <RenderUsers />
     </div>
   );
 }
