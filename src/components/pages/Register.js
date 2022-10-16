@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { registerWithEmailAndPassword } from "../../api/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../api/firebase";
+import Axios from "axios";
 
 
 // https://blog.logrocket.com/user-authentication-firebase-react-apps/
@@ -15,8 +16,11 @@ function Register() {
   const [password, setPassword] = useState("");
   const [user] = useAuthState(auth);
 
-  const register = () => {
-    registerWithEmailAndPassword(email, password);
+  const register = async () => {
+    const user = await registerWithEmailAndPassword(email, password);
+    Axios.post("/api/users", {
+      uid: user.uid,
+    });
   };
 
   useEffect(() => {

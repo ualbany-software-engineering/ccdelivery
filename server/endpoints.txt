@@ -1,0 +1,7 @@
+/api
+
+GET   /users
+POST  /users
+GET   /users/:uid
+PATCH /users/:uid
+GET   /users/:uid/perms

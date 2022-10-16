@@ -37,7 +37,7 @@ export async function registerWithEmailAndPassword(email, password) {
       email,
       password
     );
-    const user = userCredential.user;
+    return userCredential.user;
   } catch (err) {
     console.error(err);
     alert(err.message);

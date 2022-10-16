@@ -1,35 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { auth, logout } from "../../api/firebase";
 import Axios from "axios";
 import Button from "../Button";
 import PageNotFound from "./PageNotFound";
 import "../css/Dashboard.css";
+
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
-  const [users, setUsers] = useState([]);
-  const [perms, setPerms] = useState(1);
+  const [perms, setPerms] = useState();
+  const [users, setUsers] = useState();
+  console.log(user);
 
   useEffect(() => {
-    if (loading) return;
-    if (!user) return;
-    Axios.get(`http://localhost:80/api/users/perms/${user.uid}`).then(
-      (data) => {
-        setPerms(parseInt(data.data));
-      }
-    );
-    Axios.get(`http://localhost:80/api/firebase/get`).then((data) => {
+    if (loading || !user) return;
+    (async () => {
+      const perms = await Axios.get(`/api/users/${user.uid}/perms`);
+      setPerms(parseInt(perms.data));
+
+      const data = await Axios.get(`/api/users`);
+      console.log(data);
       setUsers(data.data);
-    });
+    })();
   }, [user, loading]);
 
   function post() {
     users.forEach((element) => {
-      Axios.post("http://localhost:80/api/users/insert", {
-        email: element.email,
+      Axios.post("/api/users/", {
         uid: element.uid,
       });
+    });
+  }
+
+  async function update (uid) {
+    Axios.patch(`/api/users/${uid}`, {
+      admin: true
+    }, {
+      headers: {
+        'Authorization': await user.getIdToken(),
+      }
     });
   }
 
@@ -37,11 +46,12 @@ function Dashboard() {
     let array = [];
     if (perms === 3) {
       users.forEach((item, index) => {
-        array.push(<div>{index + ": " + item.email + ": " + item.uid}</div>);
+        array.push(<Button onClick={update.bind(this, item.uid)}>{index + ": " + item.uid}</Button>);
       });
     }
     return array;
   }
+
   if (user) {
     return (
       <div className="dashboard">
@@ -57,7 +67,7 @@ function Dashboard() {
                 Logout
               </Button>
             </td>
-            {perms === 3 && (
+             {perms === 3 && (
               <td>
                 <Button
                   buttonStyle="btn--outline"
@@ -72,7 +82,7 @@ function Dashboard() {
             )}
           </tr>
         </table>
-        <RenderUsers />
+        {users && <RenderUsers />}
       </div>
     );
   } else {

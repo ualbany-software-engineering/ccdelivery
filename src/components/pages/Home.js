@@ -22,7 +22,7 @@ function Home() {
   };
   return (
     <>
-      <Display> </Display>
+      <Display />
       {user && <div>hi</div>}
       <Button onClick={login} buttonStyle="btn--outline" style={{ margin: 5 }}>
         Button
