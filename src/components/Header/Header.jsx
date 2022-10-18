@@ -1,5 +1,8 @@
 import React, { useRef, useEffect } from "react";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, logout } from "../../api/firebase";
+
 import { Container } from "reactstrap";
 import logo from "../../assets/images/res-logo.png";
 import { NavLink, Link } from "react-router-dom";
@@ -29,6 +32,8 @@ const nav__links = [
 ];
 
 const Header = () => {
+  
+const [user] = useAuthState(auth);
   const menuRef = useRef(null);
   const headerRef = useRef(null);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
@@ -93,7 +98,7 @@ const Header = () => {
                 <i class="ri-user-line"></i>
               </Link>
             </span>
-
+            {user && <span onClick={logout}>Signout</span>}
             <span className="mobile__menu" onClick={toggleMenu}>
               <i class="ri-menu-line"></i>
             </span>

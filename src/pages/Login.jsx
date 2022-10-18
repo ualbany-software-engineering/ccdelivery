@@ -1,15 +1,25 @@
-import React, { useRef } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, logInWithEmailAndPassword } from "../api/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Login = () => {
-  const loginNameRef = useRef();
-  const loginPasswordRef = useRef();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
 
-  const submitHandler = (e) => {
+  useEffect(() => {
+    if (user) navigate("/home");
+  }, [user, loading]);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
+
+    logInWithEmailAndPassword(email, password)
   };
 
   return (
@@ -25,7 +35,8 @@ const Login = () => {
                     type="email"
                     placeholder="Email"
                     required
-                    ref={loginNameRef}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="form__group">
@@ -33,10 +44,15 @@ const Login = () => {
                     type="password"
                     placeholder="Password"
                     required
-                    ref={loginPasswordRef}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <button type="submit" className="addTOCart__btn">
+                <button
+                  type="submit"
+                  className="addTOCart__btn"
+                  onClick={() => logInWithEmailAndPassword(email, password)}
+                >
                   Login
                 </button>
               </form>
